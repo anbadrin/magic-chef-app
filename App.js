@@ -1,7 +1,7 @@
-import { MaterialCommunityIcons } from '@expo/vector-icons'; 
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
-import {NavigationContainer} from '@react-navigation/native';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React from 'react';
 import { HomeButton } from './components/HomeButton.js';
 import { AddRecipe } from './components/AddRecipe.js';
@@ -22,7 +22,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Tap.Navigator
-        initialRouteName = "HomePage"
+        initialRouteName="HomePage"
       >
         <Tap.Screen
           name="Home Page"
@@ -37,12 +37,12 @@ export default function App() {
             },
             tabBarButton: (props) => null,
           }}
-          />
-          <Tap.Screen
+        />
+        <Tap.Screen
           name="Search"
           component={Search}
           options={{
-            tabBarIcon:()=>(<Ionicons name="ios-search" size={24} color="black" />),
+            tabBarIcon: () => (<Ionicons name="ios-search" size={24} color="black" />),
             headerShown: false
           }}
         />
@@ -58,15 +58,15 @@ export default function App() {
               fontWeight: 'bold',
             },
             headerTitle: () => (
-              <Title title="Add your own recipe"/>
+              <Title title="Add your own recipe" />
             ),
             headerRight: () => (
-              <HomeButton screenName={'Home Page'}/>
+              <HomeButton screenName={'Home Page'} />
             ),
             headerLeft: () => (
-              <Logo/>
+              <Logo />
             ),
-            tabBarIcon:()=>(<Ionicons name="add-circle-sharp" size={24} color="black" />)
+            tabBarIcon: () => (<Ionicons name="add-circle-sharp" size={24} color="black" />)
           }}
         />
         <Tap.Screen
@@ -74,7 +74,7 @@ export default function App() {
           component={Mycookbook}
           options={{
             headerShown: false,
-            tabBarIcon:()=>(<MaterialCommunityIcons name="bookshelf" size={24} color="black" />)
+            tabBarIcon: () => (<MaterialCommunityIcons name="bookshelf" size={24} color="black" />)
           }}
         />
       </Tap.Navigator>
@@ -82,12 +82,12 @@ export default function App() {
   );
 }
 
-const Search = ()  => {
+const Search = () => {
 
   return (
     <Stack.Navigator initialRouteName="SearchPanel">
-      <Stack.Screen 
-        name="Search Recipe" 
+      <Stack.Screen
+        name="Search Recipe"
         component={SearchRecipe}
         options={{
           headerStyle: {
@@ -98,19 +98,19 @@ const Search = ()  => {
             fontWeight: 'bold',
           },
           headerTitle: () => (
-            <Title title="Search Recipe"/>
+            <Title title="Search Recipe" />
           ),
           headerRight: () => (
-            <HomeButton screenName={'Home Page'}/>
+            <HomeButton screenName={'Home Page'} />
           ),
           headerLeft: () => (
-            <Logo/>
+            <Logo />
           ),
-          tabBarIcon:()=>(<Ionicons name="ios-search" size={24} color="black" />)
+          tabBarIcon: () => (<Ionicons name="ios-search" size={24} color="black" />)
         }}
-        />
-        <Stack.Screen 
-        name="RecipeList" 
+      />
+      <Stack.Screen
+        name="RecipeList"
         component={RecipeList}
         options={{
           headerStyle: {
@@ -121,15 +121,15 @@ const Search = ()  => {
             fontWeight: 'bold',
           },
           headerTitle: () => (
-            <Title title="Searched Recipes"/>
+            <Title title="Searched Recipes" />
           ),
           headerRight: () => (
-            <HomeButton screenName={'Home Page'}/>
+            <HomeButton screenName={'Home Page'} />
           ),
         }}
-        />
-        <Stack.Screen 
-        name="Recipe" 
+      />
+      <Stack.Screen
+        name="Recipe"
         component={Recipe}
         options={{
           headerStyle: {
@@ -140,22 +140,22 @@ const Search = ()  => {
             fontWeight: 'bold',
           },
           headerTitle: () => (
-            <Title title="Recipe Card"/>
+            <Title title="Recipe Card" />
           ),
           headerRight: () => (
-            <HomeButton screenName={'Home Page'}/>
+            <HomeButton screenName={'Home Page'} />
           ),
         }}
-        />
+      />
     </Stack.Navigator>
   )
 }
 
-const Mycookbook = ()  => {
+const Mycookbook = () => {
   return (
     <Stack.Navigator initialRouteName="CookBook">
-      <Stack.Screen 
-        name="My Cook Book" 
+      <Stack.Screen
+        name="My Cook Book"
         component={CookBook}
         options={{
           headerStyle: {
@@ -166,19 +166,19 @@ const Mycookbook = ()  => {
             fontWeight: 'bold',
           },
           headerTitle: () => (
-            <Title title="Search Recipe"/>
+            <Title title="Search Recipe" />
           ),
           headerRight: () => (
-            <HomeButton screenName={'Home Page'}/>
+            <HomeButton screenName={'Home Page'} />
           ),
           headerLeft: () => (
-            <Logo/>
+            <Logo />
           ),
-          tabBarIcon:()=>(<Ionicons name="ios-search" size={24} color="black" />)
+          tabBarIcon: () => (<Ionicons name="ios-search" size={24} color="black" />)
         }}
-        />
-        <Stack.Screen 
-        name="Recipe" 
+      />
+      <Stack.Screen
+        name="Recipe"
         component={Recipe}
         options={{
           headerStyle: {
@@ -189,13 +189,13 @@ const Mycookbook = ()  => {
             fontWeight: 'bold',
           },
           headerTitle: () => (
-            <Title title="Recipe Card"/>
+            <Title title="Recipe Card" />
           ),
           headerRight: () => (
-            <HomeButton screenName={'Home Page'}/>
+            <HomeButton screenName={'Home Page'} />
           ),
         }}
-        />
+      />
     </Stack.Navigator>
   )
 }

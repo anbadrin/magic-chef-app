@@ -19,91 +19,92 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-export function CookBook(props){
+export function CookBook(props) {
   const navigation = useNavigation();
   const cards = []
   const [recipes, setRecipes] = useState([])
 
-  useEffect(()=>{
+  useEffect(() => {
     getData()
-    console.log("Recipe list:", recipes)
-  },[])
+  }, [])
 
-  const getData = async()=>{
+  const getData = async () => {
     const docRef = collection(db, "userRecipes")
     const recipeArray = []
     const docSnap = await getDocs(docRef)
-    console.log(docSnap.docs)
-      docSnap.docs.forEach((doc) => {
-        let recipeList = doc.data()
-          let recipeObject = {
-            id:doc.id,
-            title: recipeList.title,
-            ingredients: recipeList.ingredients,
-            image: recipeList.image,
-            summary: recipeList.summary,
-            preparationMinutes: recipeList.preparationMinutes,
-            cookingMinutes: recipeList.cookingMinutes,
-            servings: recipeList.servings,
-            instructions: recipeList.instructions
-          }
-        recipeArray.push(recipeObject)
-      });
-      setRecipes(...recipes,recipeArray)
+    docSnap.docs.forEach((doc) => {
+      let recipeList = doc.data()
+      let recipeObject = {
+        id: doc.id,
+        title: recipeList.title,
+        ingredients: recipeList.ingredients,
+        image: recipeList.image,
+        summary: recipeList.summary,
+        preparationMinutes: recipeList.preparationMinutes,
+        cookingMinutes: recipeList.cookingMinutes,
+        servings: recipeList.servings,
+        instructions: recipeList.instructions
+      }
+      recipeArray.push(recipeObject)
+    });
+    setRecipes(...recipes, recipeArray)
   }
-  if (recipes.length == 0){
-    return(
+  if (recipes.length == 0) {
+    return (
       <View>
         <Text>No recipes in cookbook. Add Recipes using Add Recipe</Text>
       </View>
-  )
+    )
   }
-  else{
-  for (let i = 0; i < recipes.length; i++) {
-    cards.push({
-      id: recipes[i].id.toString(),
-      title: recipes[i].title,
-      picture: {uri:recipes[i].image},
-      content: 
-      <View>
-      <Text style={styles.description}><RenderHtml source={{html:recipes[i].summary} }/></Text>
-      <Text style={styles.description}>Preparation Time: {recipes[i].preparationMinutes}</Text>
-      <Text style={styles.description}>Cooking Time: {recipes[i].cookingMinutes}</Text>
-      <Text style={styles.description}><Text style={{fontWeight:'bold'}}>Servings: </Text>{recipes[i].servings}</Text>
-      <TouchableOpacity
-      style={{
-        borderWidth:1,
-            borderColor:'black',
-            alignItems:'center',
-            justifyContent:'center',
-            backgroundColor:'#fff',
-            borderRadius:50
-      }}
-      onPress={async()=>{
-        navigation.navigate("Recipe",{'recipes': recipes[i]})
-      }}
-      >
-        <Text>Read More</Text>
-      </TouchableOpacity>
-      </View>
-    });
-}
-console.log("Cards=",cards);
-  return(
+  else {
+    for (let i = 0; i < recipes.length; i++) {
+      cards.push({
+        id: recipes[i].id.toString(),
+        title: recipes[i].title,
+        picture: { uri: recipes[i].image },
+        content:
+          <View>
+            <Text style={styles.description}>{recipes[i].summary }</Text>
+            <Text style={styles.description}>Preparation Time: {recipes[i].preparationMinutes}</Text>
+            <Text style={styles.description}>Cooking Time: {recipes[i].cookingMinutes}</Text>
+            <Text style={styles.description}><Text style={{ fontWeight: 'bold' }}>Servings: </Text>{recipes[i].servings}</Text>
+            <TouchableOpacity
+              style={{
+                borderWidth: 1,
+                borderColor: 'black',
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: '#fff',
+                borderRadius: 50
+              }}
+              onPress={async () => {
+                navigation.navigate("Recipe", { 'recipes': recipes[i] })
+              }}
+            >
+              <Text>Read More</Text>
+            </TouchableOpacity>
+          </View>
+      });
+    }
+    return (
       <View style={styles.cardContainer}>
-      <CardList cards={cards} />
+        <CardList cards={cards} />
       </View>
-  )
-}}
+    )
+  }
+}
 
 const styles = StyleSheet.create({
-  cardContainer:{
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: '#F5FCFF',
-  }, description:{
+  container: {
+    backgroundColor: 'black'
+  },
+  cardContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+  }, description: {
     textAlign: 'justify',
-    margin: 20
+    margin: 20,
   },
 });
