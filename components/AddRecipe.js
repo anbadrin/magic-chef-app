@@ -129,8 +129,12 @@ export function AddRecipe(props){
               borderColor:'black',
               alignItems:'center',
               justifyContent:'center',
-              backgroundColor:'#fff',
-              borderRadius:50
+              backgroundColor:'#9dc7c8',
+              borderRadius:50,
+              width: '50%',
+              height: 30, 
+              margin: 10,
+              alignSelf: 'center'
         }}
         onPress={async()=>{
           await saveData()
@@ -231,11 +235,12 @@ const styles = StyleSheet.create({
         borderColor:'black',
         alignItems:'center',
         justifyContent:'center',
-        backgroundColor:'#fff',
+        backgroundColor:'#9dc7c8',
         borderRadius:50,
         height:20,
-        flex:20,
-        margin:10
+        flex:1,
+        margin:10,
+        alignSelf: 'center'
       },
 
       headerStyles: {

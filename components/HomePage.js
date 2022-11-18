@@ -1,8 +1,4 @@
 import { StyleSheet, ScrollView, Text, Image } from 'react-native';
-/*import { Explore } from './Explore';
-import dinner from '../assets/dinner.jpeg';
-import lunch from '../assets/lunch.jpg';
-import dessert from '../assets/dessert.jpeg';*/
 import logo from '../assets/logo.png';
 import { StatusBar } from 'expo-status-bar';
 
@@ -10,9 +6,6 @@ export function HomePage(props){
 
     return (
       <ScrollView style={styles.background}>
-        {/*<Explore source={dinner} title="DINNER RECIPES"/>
-        <Explore source={lunch} title="LUNCH RECIPES"/>
-    <Explore source={dessert} title="DESSERT RECIPES"/>*/}
         <Image source={logo} style={styles.logo}/>
         <Text style={styles.headerStyles}>About Us</Text>
         <Text style={styles.content}>You have nothing in your kitchen and you feel hungry? Look no further! 

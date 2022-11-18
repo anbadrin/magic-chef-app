@@ -2,7 +2,6 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import { FontAwesome } from '@expo/vector-icons'; 
 import React from 'react';
 import { HomeButton } from './components/HomeButton.js';
 import { AddRecipe } from './components/AddRecipe.js';
@@ -13,7 +12,6 @@ import { Recipe } from './components/Recipe.js';
 import { HomePage } from './components/HomePage.js';
 import { Logo } from './components/Logo.js';
 import { Title } from './components/Title.js';
-import { View, TouchableOpacity } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const Stack = createNativeStackNavigator();
@@ -41,7 +39,7 @@ export default function App() {
           }}
           />
           <Tap.Screen
-          name="Search Recipe"
+          name="Search"
           component={Search}
           options={{
             tabBarIcon:()=>(<Ionicons name="ios-search" size={24} color="black" />),
@@ -76,69 +74,9 @@ export default function App() {
           component={Mycookbook}
           options={{
             headerShown: false,
-            /*headerStyle: {
-              backgroundColor: '#9dc7c8',
-            },
-            headerTintColor: '#070707',
-            headerTitleStyle: {
-              fontWeight: 'bold',
-            },
-            headerTitle: () => (
-              <Title title="My Cookbook"/>
-            ),
-            headerRight: () => (
-              <HomeButton screenName={'Home Page'}/>
-            ),
-            headerLeft: () => (
-              <Logo/>
-            ),*/
             tabBarIcon:()=>(<MaterialCommunityIcons name="bookshelf" size={24} color="black" />)
           }}
         />
-        
-        {/*<Tap.Screen
-          name="Recipe"
-          component={Recipe}
-          options={{
-            headerTitle: () => (
-              <Title title="Recipe"/>
-            ),
-            headerRight: () => (
-              <HomeButton screenName={'Home Page'}/>
-            ),
-            headerLeft: () => (
-              <Logo/>
-            ),
-            tabBarIcon:()=>(<Ionicons name="ios-search" size={24} color="black" />),
-            tabBarButton: (props) => null,
-          }}
-        />*/}
-        {/*<Tap.Screen
-          name="RecipeList"
-          component={RecipeList}
-          options={{
-            headerTitle: () => (
-              <Title title="RecipeList"/>
-            ),
-            headerRight: () => (
-              <HomeButton screenName={'Home Page'}/>
-            ),
-            headerLeft: () => (
-              <View>
-              <TouchableOpacity
-                onPress={() => {
-                  navigation.goBack()
-                }}
-                color="black"
-              >
-              <Ionicons name="chevron-back" size={24} color="black" />
-              </TouchableOpacity>
-              </View>
-            ),
-            tabBarIcon:()=>(<Ionicons name="ios-search" size={24} color="black" />),
-            tabBarButton: (props) => null,
-          }}
-        />*/}
       </Tap.Navigator>
     </NavigationContainer>
   );

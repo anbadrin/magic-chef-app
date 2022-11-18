@@ -4,7 +4,7 @@ import RenderHtml from 'react-native-render-html';
 import { useNavigation } from '@react-navigation/native';
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-import { collection, getDocs, query, where} from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import { useState, useEffect } from 'react';
 
 const firebaseConfig = {
@@ -31,20 +31,34 @@ export function CookBook(props){
 
   const getData = async()=>{
     const docRef = collection(db, "userRecipes")
-    console.log("I am here")
     const recipeArray = []
-    //console.log(allIngredients)
-    //const queryString = query(docRef, where("ingredients", "array-contains-any", allIngredients) )
     const docSnap = await getDocs(docRef)
     console.log(docSnap.docs)
       docSnap.docs.forEach((doc) => {
-        console.log("id=",doc.id)
-        recipeArray.push(doc.data())
-        console.log("Recipes here are:",recipeArray)
+        let recipeList = doc.data()
+          let recipeObject = {
+            id:doc.id,
+            title: recipeList.title,
+            ingredients: recipeList.ingredients,
+            image: recipeList.image,
+            summary: recipeList.summary,
+            preparationMinutes: recipeList.preparationMinutes,
+            cookingMinutes: recipeList.cookingMinutes,
+            servings: recipeList.servings,
+            instructions: recipeList.instructions
+          }
+        recipeArray.push(recipeObject)
       });
       setRecipes(...recipes,recipeArray)
   }
-  console.log("Length:",recipes)
+  if (recipes.length == 0){
+    return(
+      <View>
+        <Text>No recipes in cookbook. Add Recipes using Add Recipe</Text>
+      </View>
+  )
+  }
+  else{
   for (let i = 0; i < recipes.length; i++) {
     cards.push({
       id: recipes[i].id.toString(),
@@ -67,7 +81,6 @@ export function CookBook(props){
       }}
       onPress={async()=>{
         navigation.navigate("Recipe",{'recipes': recipes[i]})
-        //<Recipe recipes={props.route.params.recipes[0]} description={props.route.params.description[0]}/>
       }}
       >
         <Text>Read More</Text>
@@ -81,7 +94,7 @@ console.log("Cards=",cards);
       <CardList cards={cards} />
       </View>
   )
-}
+}}
 
 const styles = StyleSheet.create({
   cardContainer:{

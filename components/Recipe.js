@@ -2,7 +2,6 @@ import RenderHtml from 'react-native-render-html';
 import { StyleSheet, Text, View, ScrollView, Image } from 'react-native';
 
 export function Recipe(props){
-    //console.log(props.route.params.recipes[1])
   
     const API_KEY = "dce523266emshebcbdd167205bf2p17d2e6jsnef3223cc188a"
     const apiURLGetRecipe = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/657563/information?id="
@@ -26,9 +25,7 @@ export function Recipe(props){
       <View>
       <Text style={styles.headerStyles}>{props.route.params.recipes.title}</Text>
       <Image style={styles.recipeImage} source={{uri:props.route.params.recipes.image} }/>
-      <Text style={styles.instructionContent}><RenderHtml contentWidth={'100%'}
-        color= {'#9dc7c8'}
-      source={{html:props.route.params.recipes.summary} }/></Text>
+      <Text style={styles.instructionContent}>{props.route.params.recipes.summary}</Text>
       <Text style={styles.instructionContent}><Text style={{fontWeight:'bold'}}>Time Required: </Text>{prepTime}</Text>
       <Text style={styles.instructionContent}>Preparation Time: {props.route.params.recipes.preparationMinutes}</Text>
       <Text style={styles.instructionContent}>Cooking Time: {props.route.params.recipes.cookingMinutes}</Text>
