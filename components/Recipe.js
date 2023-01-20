@@ -1,4 +1,3 @@
-import RenderHtml from 'react-native-render-html';
 import { StyleSheet, Text, View, ScrollView, Image } from 'react-native';
 
 export function Recipe(props) {

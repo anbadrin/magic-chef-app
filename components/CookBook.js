@@ -1,6 +1,5 @@
 import { CardList } from 'react-native-card-list';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import RenderHtml from 'react-native-render-html';
 import { useNavigation } from '@react-navigation/native';
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";

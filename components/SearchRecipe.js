@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { StyleSheet, Text, View, TouchableOpacity, Switch, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { collection, getDocs, query, where } from "firebase/firestore";
